@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".FirstFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include layout="@layout/fragment_first_toolbar"
+        />
 
-</FrameLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/first_fragment_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_view"
+                android:paddingVertical="3dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="5dp"
+                app:queryHint="Введите название"
+                app:queryBackground="@android:color/transparent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/first_fragment_categories_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                tools:itemCount="4"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/categories_horizontal_item"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/first_fragment_popular_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                tools:itemCount="4"
+                android:overScrollMode="never"
+                tools:listitem="@layout/popular_food_item"
+                android:layout_marginBottom="100dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

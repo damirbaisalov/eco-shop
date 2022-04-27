@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -47,4 +48,16 @@ dependencies {
 
     //input-mask-edit-text
     implementation 'ru.egslava:MaskedEditText:1.0.5'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //viewpager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    //tab-layout
+    implementation 'com.google.android.material:material:1.7.0-alpha01'
+
+    // если добавлять отдельно в каких-то проектах
+    implementation "androidx.cardview:cardview:1.0.0"
 }

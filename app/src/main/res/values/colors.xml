@@ -18,4 +18,5 @@
 
     <color name="bottom_nav_selected_icon">@color/color_primary</color>
     <color name="bottom_nav_unselected_icon">#CCCCCC</color>
+    <color name="search_view_color">#EDEEEF</color>
 </resources>
