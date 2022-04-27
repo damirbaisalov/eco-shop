@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eco_shop.categories.models.CategoriesDatabase
 import com.example.eco_shop.categories.view.CategoriesAdapter
 import com.example.eco_shop.categories.view.CategoriesDataClickListener
+import com.example.eco_shop.food_detailed.FoodDetailedActivity
 import com.example.eco_shop.menu.MenuActivity
+import com.example.eco_shop.popular_products.models.PopularProductsApiData
 import com.example.eco_shop.popular_products.models.PopularProductsDatabase
 import com.example.eco_shop.popular_products.view.PopularProductsAdapter
 import com.example.eco_shop.popular_products.view.PopularProductsClickListener
@@ -82,8 +84,14 @@ class FirstFragment : Fragment() {
 
     private fun getPopularProductsClickListener(): PopularProductsClickListener {
         return object: PopularProductsClickListener {
-            override fun onPopularProductsClick(id: String) {
-                Toast.makeText(rootView.context, id, Toast.LENGTH_LONG).show()
+            override fun onPopularProductsClick(popularProductApiData: PopularProductsApiData) {
+
+                val intent = Intent(rootView.context, FoodDetailedActivity::class.java)
+                intent.putExtra("PRODUCT_TITLE", popularProductApiData.title)
+                intent.putExtra("PRODUCT_COST", popularProductApiData.cost)
+                intent.putExtra("PRODUCT_IMAGE", popularProductApiData.image)
+                intent.putExtra("PRODUCT_IS_FAVORITE", popularProductApiData.isFavorite)
+                startActivity(intent)
             }
         }
     }

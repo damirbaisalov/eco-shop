@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".food_detailed.FoodDetailedActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            layout="@layout/activity_food_detailed_toolbar"
+            />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="100dp"
+            android:fillViewport="true">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/activity_food_detailed_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:src="@drawable/food_detailed_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginHorizontal="24dp"
+                    android:elevation="2dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/activity_food_detailed_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Кокосовое молоко, 1л"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_food_detailed_image_view"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/activity_food_detailed_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2700T"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/activity_food_detailed_title"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_food_detailed_title"
+                    android:layout_marginTop="5dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/activity_food_detailed_favorite"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintEnd_toEndOf="@id/activity_food_detailed_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/activity_food_detailed_image_view"
+                    android:src="@drawable/ic_food_detailed_favorite_false"
+                    app:layout_constraintTop_toTopOf="@id/activity_food_detailed_title"
+                    />
+
+                <TextView
+                    android:id="@+id/activity_food_detailed_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Кокосовое Молоко из мякоти кокосового ореха Aroy-D, Тайланд, уп. 250 мл.
+    Сладковатый напиток получают из перетертой мякоти созревшего кокосового ореха, смешивая ее с водой.  Оно нейтрализует жгучий вкус специй и умягчает блюда, делая их более съедобными и комфортными.
+    Упаковка емкостью 250 мл.
+    Производство Aroy-D, Тайланд."
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="8dp"
+                    app:layout_constraintStart_toStartOf="@id/activity_food_detailed_cost"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_food_detailed_cost"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="@id/activity_food_detailed_favorite"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/activity_food_detailed_add_to_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_login_button"
+        android:text="Добавить в корзину"
+        android:textSize="16sp"
+        android:textColor="@color/color_white"
+        android:textAllCaps="false"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="16dp"
+        />
+
+</FrameLayout>

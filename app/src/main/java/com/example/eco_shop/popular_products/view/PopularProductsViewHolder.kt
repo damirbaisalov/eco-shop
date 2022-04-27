@@ -49,7 +49,7 @@ class PopularProductsViewHolder(
         popularProductsCostTextView.text = popularProductsApiData.cost
 
         popularProductsImage.setOnClickListener {
-            popularProductsClickListener.onPopularProductsClick(popularProductsApiData.id)
+            popularProductsClickListener.onPopularProductsClick(popularProductsApiData)
         }
     }
 }
