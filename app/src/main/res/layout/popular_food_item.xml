@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/popular_food_item_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/popular_image"
+            />
+
+        <ImageView
+            android:id="@+id/popular_food_item_favorite_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_favorite_false"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/popular_food_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кокосовое молоко, 1л"
+        android:textColor="@color/color_black"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginHorizontal="5dp"
+        />
+
+    <TextView
+        android:id="@+id/popular_food_item_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2700Т"
+        android:textSize="12sp"
+        android:layout_marginHorizontal="5dp"
+        />
+
+</LinearLayout>
