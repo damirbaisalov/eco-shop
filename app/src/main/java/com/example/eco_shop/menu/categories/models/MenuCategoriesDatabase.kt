@@ -1,7 +1,6 @@
 package com.example.eco_shop.menu.categories.models
 
 import com.example.eco_shop.R
-import com.example.eco_shop.popular_products.models.PopularProductsApiData
 
 object MenuCategoriesDatabase {
     //DATABASE FOR LIST OF VIDEOMATERIALS
