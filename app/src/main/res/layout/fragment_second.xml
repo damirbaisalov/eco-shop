@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <include layout="@layout/fragment_second_toolbar"
+        />
+
     <TextView
+        android:id="@+id/second_fragment_empty_favorites_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Ваш список избранных пуст"
+        android:gravity="center"
+        android:textColor="@color/color_primary"
+        android:visibility="gone"
+        android:textSize="24sp"
+        />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/second_fragment_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="15dp"
+        android:clipToPadding="false"
+        tools:itemCount="4"
+        android:overScrollMode="never"
+        tools:listitem="@layout/favorite_product_item"
+        android:layout_marginBottom="100dp"/>
+
+</LinearLayout>

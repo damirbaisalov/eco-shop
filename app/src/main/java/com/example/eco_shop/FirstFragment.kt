@@ -12,6 +12,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.eco_shop.categories.models.CategoriesDatabase
 import com.example.eco_shop.categories.view.CategoriesAdapter
 import com.example.eco_shop.categories.view.CategoriesDataClickListener
@@ -25,6 +26,8 @@ import com.example.eco_shop.popular_products.view.PopularProductsClickListener
 class FirstFragment : Fragment() {
 
     private lateinit var rootView: View
+
+//    private var productsDao: ProductsDao? = null
 
     private lateinit var menuImageView: ImageView
     private lateinit var searchView: SearchView
@@ -51,6 +54,8 @@ class FirstFragment : Fragment() {
     }
 
     private fun init() {
+
+//        productsDao = ProductsDatabase.getDatabase(context = rootView.context).productsDao()
         
         menuImageView = rootView.findViewById(R.id.fragment_first_toolbar_menu_image_view)
         searchView = rootView.findViewById(R.id.first_fragment_search_view)
@@ -65,10 +70,10 @@ class FirstFragment : Fragment() {
         categoriesAdapter.setList(CategoriesDatabase.categoriesApiDataDatabase)
 
         popularRecyclerView = rootView.findViewById(R.id.first_fragment_popular_recycler_view)
-        popularRecyclerView.layoutManager = GridLayoutManager(
-            rootView.context,
-            2
-        )
+        popularRecyclerView.layoutManager = LinearLayoutManager(rootView.context)
+
+//        productsDao?.insertAll(PopularProductsDatabase.popularProductsDatabase)
+
         popularRecyclerView.adapter = popularProductsAdapter
         popularProductsAdapter.setList(PopularProductsDatabase.popularProductsDatabase)
 
@@ -91,8 +96,40 @@ class FirstFragment : Fragment() {
                 intent.putExtra("PRODUCT_COST", popularProductApiData.cost)
                 intent.putExtra("PRODUCT_IMAGE", popularProductApiData.image)
                 intent.putExtra("PRODUCT_IS_FAVORITE", popularProductApiData.isFavorite)
+                intent.putExtra("PRODUCT_ID", popularProductApiData.id)
                 startActivity(intent)
             }
+
+            override fun onPopularProductsFavoriteClick(
+                popularProductApiData: PopularProductsApiData,
+                favoriteImage: ImageView
+            ) {
+                if (popularProductApiData.isFavorite)
+                {
+                    popularProductApiData.isFavorite = false
+                    Glide
+                        .with(rootView.context)
+                        .load(R.drawable.ic_food_detailed_favorite_false)
+                        .centerCrop()
+                        .into(favoriteImage)
+                    SecondFragment.favoriteList.remove(popularProductApiData)
+                }
+                else
+                {
+                    popularProductApiData.isFavorite = true
+                    Glide
+                        .with(rootView.context)
+                        .load(R.drawable.ic_food_detailed_favorite_true)
+                        .centerCrop()
+                        .into(favoriteImage)
+                    SecondFragment.favoriteList.add(popularProductApiData)
+                }
+            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        init()
     }
 }

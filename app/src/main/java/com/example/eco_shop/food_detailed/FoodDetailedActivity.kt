@@ -6,6 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.eco_shop.R
+import com.example.eco_shop.SecondFragment
+import com.example.eco_shop.popular_products.models.PopularProductsDatabase
 
 class FoodDetailedActivity : AppCompatActivity() {
 
@@ -37,6 +39,7 @@ class FoodDetailedActivity : AppCompatActivity() {
         val productCost = intent.getStringExtra("PRODUCT_COST")
         val productImage = intent.getIntExtra("PRODUCT_IMAGE", R.drawable.popular_image)
         val productFavorite = intent.getBooleanExtra("PRODUCT_IS_FAVORITE", false)
+        val productId = intent.getStringExtra("PRODUCT_ID")
 
         foodTitle = findViewById(R.id.activity_food_detailed_title)
         foodCost = findViewById(R.id.activity_food_detailed_cost)
@@ -56,7 +59,7 @@ class FoodDetailedActivity : AppCompatActivity() {
         {
             Glide
                 .with(this)
-                .load(R.drawable.ic_food_detailed_favorite_false)
+                .load(R.drawable.ic_food_detailed_favorite_true)
                 .centerCrop()
                 .into(foodIsFavorite)
         }
@@ -64,9 +67,40 @@ class FoodDetailedActivity : AppCompatActivity() {
         {
             Glide
                 .with(this)
-                .load(R.drawable.ic_food_detailed_favorite_true)
+                .load(R.drawable.ic_food_detailed_favorite_false)
                 .centerCrop()
                 .into(foodIsFavorite)
+        }
+
+        foodIsFavorite.setOnClickListener {
+            if (productFavorite)
+            {
+                for (p in PopularProductsDatabase.popularProductsDatabase) {
+                    if (productId == p.id) {
+                        p.isFavorite = false
+                        Glide
+                            .with(this)
+                            .load(R.drawable.ic_food_detailed_favorite_false)
+                            .centerCrop()
+                            .into(foodIsFavorite)
+                        SecondFragment.favoriteList.remove(p)
+                    }
+                }
+            }
+            else
+            {
+                for (p in PopularProductsDatabase.popularProductsDatabase) {
+                    if (productId == p.id) {
+                        p.isFavorite = true
+                        Glide
+                            .with(this)
+                            .load(R.drawable.ic_food_detailed_favorite_true)
+                            .centerCrop()
+                            .into(foodIsFavorite)
+                        SecondFragment.favoriteList.add(p)
+                    }
+                }
+            }
         }
     }
 }

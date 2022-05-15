@@ -3,6 +3,7 @@ package com.example.eco_shop.popular_products.view
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eco_shop.R
@@ -13,12 +14,10 @@ class PopularProductsViewHolder(
     private val popularProductsClickListener: PopularProductsClickListener
 ): RecyclerView.ViewHolder(itemView) {
 
-
     private val popularProductsTitleTextView: TextView = itemView.findViewById(R.id.popular_food_item_title)
     private val popularProductsImage: ImageView = itemView.findViewById(R.id.popular_food_item_image)
     private val popularProductsFavoriteImage: ImageView = itemView.findViewById(R.id.popular_food_item_favorite_image)
     private val popularProductsCostTextView: TextView = itemView.findViewById(R.id.popular_food_item_cost)
-
 
     fun onBind(popularProductsApiData: PopularProductsApiData) {
 
@@ -32,7 +31,7 @@ class PopularProductsViewHolder(
         {
             Glide
                 .with(itemView.context)
-                .load(R.drawable.ic_favorite_false)
+                .load(R.drawable.ic_food_detailed_favorite_true)
                 .centerCrop()
                 .into(popularProductsFavoriteImage)
         }
@@ -40,7 +39,7 @@ class PopularProductsViewHolder(
         {
             Glide
                 .with(itemView.context)
-                .load(R.drawable.ic_favorite_true)
+                .load(R.drawable.ic_food_detailed_favorite_false)
                 .centerCrop()
                 .into(popularProductsFavoriteImage)
         }
@@ -50,6 +49,13 @@ class PopularProductsViewHolder(
 
         popularProductsImage.setOnClickListener {
             popularProductsClickListener.onPopularProductsClick(popularProductsApiData)
+        }
+
+        popularProductsFavoriteImage.setOnClickListener {
+            popularProductsClickListener.onPopularProductsFavoriteClick(
+                popularProductsApiData,
+                popularProductsFavoriteImage
+            )
         }
     }
 }
