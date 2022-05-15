@@ -11,7 +11,7 @@ object CategoriesDatabase {
 
 
         categoriesApiDataId.add("1")
-        categoriesApiDataTitle.add("Без глютена")
+        categoriesApiDataTitle.add("Все")
 
         categoriesApiDataId.add("2")
         categoriesApiDataTitle.add("Детям")
@@ -23,7 +23,7 @@ object CategoriesDatabase {
         categoriesApiDataTitle.add("Без сахара")
 
         categoriesApiDataId.add("5")
-        categoriesApiDataTitle.add("Все")
+        categoriesApiDataTitle.add("Без глютена")
 
         for (i in 0 until categoriesApiDataId.size){
             val categoriesApiData =  CategoriesApiData(

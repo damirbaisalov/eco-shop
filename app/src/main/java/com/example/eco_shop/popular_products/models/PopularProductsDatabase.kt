@@ -16,19 +16,19 @@ object PopularProductsDatabase {
 
         popularProductsApiDataId.add("1")
         popularProductsApiDataTitle.add("Кокосовое молоко, 1л.")
-        popularProductsApiDataImage.add(R.drawable.popular_image)
+        popularProductsApiDataImage.add(R.drawable.product_logo_ex)
         popularProductsApiDataCost.add("2700T")
         popularProductsApiDataIsFavorite.add(false)
 
         popularProductsApiDataId.add("2")
         popularProductsApiDataTitle.add("Кокосовое молоко, 1л.")
-        popularProductsApiDataImage.add(R.drawable.popular_image)
+        popularProductsApiDataImage.add(R.drawable.product_logo_ex)
         popularProductsApiDataCost.add("1500T")
-        popularProductsApiDataIsFavorite.add(true)
+        popularProductsApiDataIsFavorite.add(false)
 
         popularProductsApiDataId.add("3")
         popularProductsApiDataTitle.add("Кокосовое молоко, 1л.")
-        popularProductsApiDataImage.add(R.drawable.popular_image)
+        popularProductsApiDataImage.add(R.drawable.product_logo_ex)
         popularProductsApiDataCost.add("2000T")
         popularProductsApiDataIsFavorite.add(false)
 
@@ -36,7 +36,7 @@ object PopularProductsDatabase {
         popularProductsApiDataTitle.add("Кокосовое молоко, 1л.")
         popularProductsApiDataImage.add(R.drawable.popular_image)
         popularProductsApiDataCost.add("3900T")
-        popularProductsApiDataIsFavorite.add(true)
+        popularProductsApiDataIsFavorite.add(false)
 
 
         for (i in 0 until popularProductsApiDataId.size){
