@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".ThirdFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <include layout="@layout/fragment_third_toolbar"
+        />
+
     <TextView
+        android:id="@+id/third_fragment_empty_cart_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Ваша корзина пуста"
+        android:gravity="center"
+        android:textColor="@color/color_primary"
+        android:visibility="gone"
+        android:textSize="24sp"
+        />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/fragment_third_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/third_fragment_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingTop="15dp"
+            android:clipToPadding="false"
+            tools:itemCount="3"
+            android:overScrollMode="never"
+            tools:listitem="@layout/cart_product_item"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/third_fragment_bottom_layout"
+            />
+
+        <LinearLayout
+            android:id="@+id/third_fragment_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="24dp">
+
+                <TextView
+                    android:id="@+id/third_fragment_sum_order_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Сумма покукпи:"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/third_fragment_sum_order_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6100Т"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/third_fragment_sum_order_text_view"
+                    />
+
+                <TextView
+                    android:id="@+id/third_fragment_delivery_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Доставка:"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/third_fragment_total_sum_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/third_fragment_sum_order_text_view"
+                    android:layout_marginVertical="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/third_fragment_delivery_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500T"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/third_fragment_delivery_text_view"
+                    />
+
+                <TextView
+                    android:id="@+id/third_fragment_total_sum_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Общая сумма:"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_black"
+                    android:layout_marginVertical="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/third_fragment_delivery_text_view"
+                    />
+
+                <TextView
+                    android:id="@+id/third_fragment_total_sum_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7100Т"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/third_fragment_total_sum_text_view"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/fragment_third_form_order_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:background="@drawable/bg_login_button"
+                android:text="Оформить заказ"
+                android:textSize="16sp"
+                android:textColor="@color/color_white"
+                android:textAllCaps="false"
+                android:layout_marginBottom="10dp"
+                android:paddingVertical="16dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,11 +2,13 @@ package com.example.eco_shop.food_detailed
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.eco_shop.R
 import com.example.eco_shop.SecondFragment
+import com.example.eco_shop.ThirdFragment
 import com.example.eco_shop.popular_products.models.PopularProductsDatabase
 
 class FoodDetailedActivity : AppCompatActivity() {
@@ -18,15 +20,29 @@ class FoodDetailedActivity : AppCompatActivity() {
     private lateinit var foodCost: TextView
     private lateinit var foodIsFavorite: ImageView
 
+    private lateinit var addToCartButton: Button
+    private var productId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_detailed)
+        productId = intent.getStringExtra("PRODUCT_ID").toString()
 
         init()
 
         backButton.setOnClickListener {
             onBackPressed()
+        }
+
+        addToCartButton.setOnClickListener {
+
+            for (p in PopularProductsDatabase.popularProductsDatabase) {
+                if (p.id == productId) {
+                    if (!ThirdFragment.cartList.contains(p)) {
+                        ThirdFragment.cartList.add(p)
+                    }
+                }
+            }
         }
 
     }
@@ -39,12 +55,13 @@ class FoodDetailedActivity : AppCompatActivity() {
         val productCost = intent.getStringExtra("PRODUCT_COST")
         val productImage = intent.getIntExtra("PRODUCT_IMAGE", R.drawable.popular_image)
         val productFavorite = intent.getBooleanExtra("PRODUCT_IS_FAVORITE", false)
-        val productId = intent.getStringExtra("PRODUCT_ID")
+
 
         foodTitle = findViewById(R.id.activity_food_detailed_title)
         foodCost = findViewById(R.id.activity_food_detailed_cost)
         foodImage = findViewById(R.id.activity_food_detailed_image_view)
         foodIsFavorite = findViewById(R.id.activity_food_detailed_favorite)
+        addToCartButton = findViewById(R.id.activity_food_detailed_add_to_cart)
 
         foodTitle.text = productTitle
         foodCost.text = productCost
