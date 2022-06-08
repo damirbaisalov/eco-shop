@@ -1,6 +1,7 @@
 package com.example.eco_shop.sign_in
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +10,9 @@ import android.widget.TextView
 import com.example.eco_shop.MainActivity
 import com.example.eco_shop.R
 import com.example.eco_shop.sign_up.RegistrationActivity
+
+const val USER_TOKEN = "user_token"
+const val APPLICATION_SHARED_PREFERENCES = "application"
 
 class LoginActivity : AppCompatActivity() {
 
@@ -42,5 +46,16 @@ class LoginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.activity_login_mail_edit_text)
         passwordEditText = findViewById(R.id.activity_login_password_edit_text)
         signUpTextView = findViewById(R.id.activity_login_sign_up_text_view)
+    }
+
+    private fun saveUserToken(token: String){
+        val sharedPreferences: SharedPreferences = getSharedPreferences(
+            APPLICATION_SHARED_PREFERENCES,
+            MODE_PRIVATE)
+
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        editor.putString(USER_TOKEN, token)
+        editor.apply()
     }
 }

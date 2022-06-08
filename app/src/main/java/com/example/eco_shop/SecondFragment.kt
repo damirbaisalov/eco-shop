@@ -6,22 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.eco_shop.favorite_products.view.FavoriteAdapter
 import com.example.eco_shop.favorite_products.view.FavoriteClickListener
 import com.example.eco_shop.food_detailed.FoodDetailedActivity
 import com.example.eco_shop.popular_products.models.PopularProductsApiData
-import com.example.eco_shop.popular_products.models.PopularProductsDatabase
-import com.example.eco_shop.popular_products.view.PopularProductsAdapter
-import com.example.eco_shop.popular_products.view.PopularProductsClickListener
 
 class SecondFragment : Fragment() {
 

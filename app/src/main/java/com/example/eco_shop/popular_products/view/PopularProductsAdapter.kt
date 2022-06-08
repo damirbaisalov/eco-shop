@@ -37,4 +37,19 @@ class PopularProductsAdapter(
         (dataList as? ArrayList<PopularProductsApiData>)?.clear()
         notifyDataSetChanged()
     }
+
+    fun filter(name: String) {
+        val temp : MutableList<PopularProductsApiData> = mutableListOf()
+        for (d in dataList) {
+            if (d.title?.lowercase()?.contains(name)!!) {
+                temp.add(d)
+            }
+        }
+        updateList(temp)
+    }
+
+    private fun updateList(list : List<PopularProductsApiData>) {
+        dataList = list as MutableList<PopularProductsApiData>
+        notifyDataSetChanged()
+    }
 }

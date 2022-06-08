@@ -1,6 +1,8 @@
 package com.example.eco_shop
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +24,9 @@ import com.example.eco_shop.popular_products.models.PopularProductsApiData
 import com.example.eco_shop.popular_products.models.PopularProductsDatabase
 import com.example.eco_shop.popular_products.view.PopularProductsAdapter
 import com.example.eco_shop.popular_products.view.PopularProductsClickListener
+import com.example.eco_shop.sign_in.APPLICATION_SHARED_PREFERENCES
+import com.example.eco_shop.sign_in.LoginActivity
+import com.example.eco_shop.sign_in.USER_TOKEN
 import com.example.eco_shop.user_page.UserPageActivity
 
 class FirstFragment : Fragment() {
@@ -35,6 +40,7 @@ class FirstFragment : Fragment() {
     private lateinit var accountImageView: ImageView
     private lateinit var categoriesRecyclerView: RecyclerView
     private lateinit var popularRecyclerView: RecyclerView
+    private var searchingProductsList: List<PopularProductsApiData> = listOf()
 
     private val categoriesAdapter = CategoriesAdapter(getCategoriesClickListener())
     private val popularProductsAdapter = PopularProductsAdapter(getPopularProductsClickListener())
@@ -53,8 +59,15 @@ class FirstFragment : Fragment() {
         }
 
         accountImageView.setOnClickListener {
-            startActivity(Intent(requireActivity(), UserPageActivity::class.java))
+            if (getSaveUserToken()=="default") {
+                showToast("Вы не авторизованы!")
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            } else {
+                startActivity(Intent(requireActivity(), UserPageActivity::class.java))
+            }
         }
+
+        queryInSearchView()
         
         return rootView
     }
@@ -66,6 +79,7 @@ class FirstFragment : Fragment() {
         menuImageView = rootView.findViewById(R.id.fragment_first_toolbar_menu_image_view)
         searchView = rootView.findViewById(R.id.first_fragment_search_view)
         accountImageView = rootView.findViewById(R.id.fragment_first_toolbar_account_image_view)
+        searchingProductsList = PopularProductsDatabase.popularProductsDatabase
 
         categoriesRecyclerView = rootView.findViewById(R.id.first_fragment_categories_recycler_view)
         categoriesRecyclerView.layoutManager = LinearLayoutManager(
@@ -138,5 +152,59 @@ class FirstFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         init()
+    }
+
+    private fun getSaveUserToken(): String {
+        val sharedPreferences: SharedPreferences = rootView.context.getSharedPreferences(
+            APPLICATION_SHARED_PREFERENCES,
+            Context.MODE_PRIVATE
+        )
+
+        return sharedPreferences.getString(USER_TOKEN, "default") ?: "default"
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(
+            rootView.context,
+            text,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun queryInSearchView() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                searchView.clearFocus()
+
+                val queryText = p0?.lowercase()
+
+
+                popularProductsAdapter.filter(queryText!!)
+
+
+                return false
+
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+
+                val queryText = p0?.lowercase()
+
+//                cafeAdapter?.filter(queryText!!)
+//
+//                if (queryText?.isEmpty()!!)
+//                    cafeAdapter?.setList(searchingCafeList)
+
+                val productsList: MutableList<PopularProductsApiData> = mutableListOf()
+                for (q in searchingProductsList) {
+                    if (q.title?.lowercase()?.contains(queryText!!)!!) {
+                        productsList.add(q)
+                    }
+                }
+                popularProductsAdapter.setList(productsList)
+
+                return false
+            }
+        })
     }
 }
