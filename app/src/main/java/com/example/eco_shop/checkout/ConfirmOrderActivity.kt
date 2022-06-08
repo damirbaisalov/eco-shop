@@ -2,9 +2,12 @@ package com.example.eco_shop.checkout
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.eco_shop.R
+import com.example.eco_shop.dialog_fragments.SuccessDialogFragment
 
 class ConfirmOrderActivity : AppCompatActivity() {
 
@@ -20,6 +23,21 @@ class ConfirmOrderActivity : AppCompatActivity() {
 
         checkOutButton.setOnClickListener {
 
+            if (checkFields()) {
+
+                val dialogFragment = SuccessDialogFragment()
+                val fragmentManager = supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+                dialogFragment.show(transaction, "success_dialog")
+            }
+            else
+            {
+                Toast.makeText(
+                    this,
+                    "Заполните все необходимые поля для подтверждения заказа",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
@@ -32,5 +50,22 @@ class ConfirmOrderActivity : AppCompatActivity() {
         val costIntent = intent.getStringExtra("CONFIRM_COST")
 
         checkOutButton.text = ("Оплатить $costIntent"+"Т")
+    }
+
+    private fun checkFields(): Boolean {
+
+        if (nameEditText.text.toString() == "" ||
+            addressEditText.text.toString() == "" ||
+            telephoneEditText.text.toString().length != 16
+        ) {
+
+            Log.e("tel", addressEditText.text.toString())
+            Log.e("tel", nameEditText.text.toString())
+            Log.e("tel", telephoneEditText.text.toString())
+
+                return false
+            }
+
+        return true
     }
 }
