@@ -76,6 +76,8 @@ class SecondFragment : Fragment() {
                 intent.putExtra("PRODUCT_COST", popularProductsApiData.cost)
                 intent.putExtra("PRODUCT_IMAGE", popularProductsApiData.image)
                 intent.putExtra("PRODUCT_IS_FAVORITE", popularProductsApiData.isFavorite)
+                intent.putExtra("PRODUCT_ID", popularProductsApiData.id)
+
                 startActivity(intent)
             }
 

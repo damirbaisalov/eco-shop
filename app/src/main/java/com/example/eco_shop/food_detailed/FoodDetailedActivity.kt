@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.eco_shop.R
 import com.example.eco_shop.SecondFragment
@@ -40,6 +41,7 @@ class FoodDetailedActivity : AppCompatActivity() {
                 if (p.id == productId) {
                     if (!ThirdFragment.cartList.contains(p)) {
                         ThirdFragment.cartList.add(p)
+                        showToast("Успешно добавлен в корзину!")
                     }
                 }
             }
@@ -119,5 +121,9 @@ class FoodDetailedActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 }

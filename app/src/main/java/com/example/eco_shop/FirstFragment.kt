@@ -22,6 +22,7 @@ import com.example.eco_shop.popular_products.models.PopularProductsApiData
 import com.example.eco_shop.popular_products.models.PopularProductsDatabase
 import com.example.eco_shop.popular_products.view.PopularProductsAdapter
 import com.example.eco_shop.popular_products.view.PopularProductsClickListener
+import com.example.eco_shop.user_page.UserPageActivity
 
 class FirstFragment : Fragment() {
 
@@ -31,6 +32,7 @@ class FirstFragment : Fragment() {
 
     private lateinit var menuImageView: ImageView
     private lateinit var searchView: SearchView
+    private lateinit var accountImageView: ImageView
     private lateinit var categoriesRecyclerView: RecyclerView
     private lateinit var popularRecyclerView: RecyclerView
 
@@ -49,6 +51,10 @@ class FirstFragment : Fragment() {
         menuImageView.setOnClickListener { 
             startActivity(Intent(requireActivity(), MenuActivity::class.java))
         }
+
+        accountImageView.setOnClickListener {
+            startActivity(Intent(requireActivity(), UserPageActivity::class.java))
+        }
         
         return rootView
     }
@@ -59,6 +65,7 @@ class FirstFragment : Fragment() {
         
         menuImageView = rootView.findViewById(R.id.fragment_first_toolbar_menu_image_view)
         searchView = rootView.findViewById(R.id.first_fragment_search_view)
+        accountImageView = rootView.findViewById(R.id.fragment_first_toolbar_account_image_view)
 
         categoriesRecyclerView = rootView.findViewById(R.id.first_fragment_categories_recycler_view)
         categoriesRecyclerView.layoutManager = LinearLayoutManager(

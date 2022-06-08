@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp">
+            >
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/first_fragment_search_view"
@@ -29,6 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingHorizontal="5dp"
                 app:queryHint="Введите название"
+                android:layout_marginHorizontal="24dp"
                 app:queryBackground="@android:color/transparent"
                 />
 
@@ -40,6 +41,7 @@
                 android:orientation="horizontal"
                 tools:itemCount="4"
                 android:overScrollMode="never"
+                android:layout_marginHorizontal="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/categories_horizontal_item"
                 />
@@ -50,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 tools:itemCount="4"
+                android:paddingHorizontal="24dp"
                 android:overScrollMode="never"
                 tools:listitem="@layout/popular_food_item"
                 android:layout_marginBottom="100dp"/>
