@@ -26,10 +26,12 @@
 
         <TextView
             android:id="@+id/favorite_product_item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Кокосовое молоко, 1л."
             android:textColor="@color/black"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintStart_toEndOf="@id/favorite_product_item_image"
             app:layout_constraintTop_toTopOf="@id/favorite_product_item_image"
             android:layout_marginStart="10dp"

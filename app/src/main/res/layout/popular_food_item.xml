@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/popular_food_item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Кокосовое молоко, 1л"
             android:textColor="@color/color_black"

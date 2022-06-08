@@ -20,6 +20,7 @@ class FoodDetailedActivity : AppCompatActivity() {
     private lateinit var foodTitle: TextView
     private lateinit var foodCost: TextView
     private lateinit var foodIsFavorite: ImageView
+    private lateinit var foodDescription: TextView
 
     private lateinit var addToCartButton: Button
     private var productId = ""
@@ -57,16 +58,18 @@ class FoodDetailedActivity : AppCompatActivity() {
         val productCost = intent.getStringExtra("PRODUCT_COST")
         val productImage = intent.getIntExtra("PRODUCT_IMAGE", R.drawable.popular_image)
         val productFavorite = intent.getBooleanExtra("PRODUCT_IS_FAVORITE", false)
-
+        val productDescription = intent.getStringExtra("PRODUCT_DESCRIPTION")
 
         foodTitle = findViewById(R.id.activity_food_detailed_title)
         foodCost = findViewById(R.id.activity_food_detailed_cost)
         foodImage = findViewById(R.id.activity_food_detailed_image_view)
         foodIsFavorite = findViewById(R.id.activity_food_detailed_favorite)
         addToCartButton = findViewById(R.id.activity_food_detailed_add_to_cart)
+        foodDescription = findViewById(R.id.activity_food_detailed_description)
 
         foodTitle.text = productTitle
         foodCost.text = productCost
+        foodDescription.text = productDescription
 
         Glide
             .with(this)

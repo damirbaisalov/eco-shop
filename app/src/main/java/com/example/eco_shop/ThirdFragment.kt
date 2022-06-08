@@ -48,7 +48,7 @@ class ThirdFragment : Fragment() {
 
         confirmOrderButton.setOnClickListener {
             val intent = Intent(rootView.context, ConfirmOrderActivity::class.java)
-            intent.putExtra("CONFIRM_COST", costCounter.toString())
+            intent.putExtra("CONFIRM_COST", totalSumWithDeliveryTextView.text.toString())
             startActivity(intent)
         }
 

@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.example.eco_shop.MainActivity
 import com.example.eco_shop.R
 import com.example.eco_shop.sign_up.RegistrationActivity
+import com.example.eco_shop.user_page.UserPageActivity
 
 const val USER_TOKEN = "user_token"
 const val APPLICATION_SHARED_PREFERENCES = "application"
@@ -28,6 +29,16 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         init()
+
+        loginButton.setOnClickListener {
+            if (emailEditText.text.toString() == "damir@gmail.com" &&
+                    passwordEditText.text.toString() == "12345") {
+
+                startActivity(Intent(this, MainActivity::class.java))
+                saveUserToken("user_1")
+                finish()
+            }
+        }
 
         continueButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

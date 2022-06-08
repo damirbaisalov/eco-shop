@@ -5,5 +5,6 @@ data class PopularProductsApiData(
     val title: String,
     val image: Int,
     val cost: String,
+    val description: String,
     var isFavorite: Boolean
 )
